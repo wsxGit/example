@@ -80,7 +80,7 @@
             </el-aside>
             <el-container>
                 <el-main>
-                    <iframe scrolling="yes" frameborder="0" style="width:100%;min-height: 500px;" src="/main"></iframe>
+                    <iframe scrolling="yes" frameborder="0" style="width:100%;min-height: 500px;" :src="main"></iframe>
                 </el-main>
                 <el-footer>Footer</el-footer>
             </el-container>

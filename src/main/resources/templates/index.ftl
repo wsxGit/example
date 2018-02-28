@@ -6,19 +6,26 @@
 </head>
 <body>
 <style>
-    .el-header, .el-footer {
-        background-color: #B3C0D1;
-        color: #333;
+    .el-header {
+        background-color: #409EFF;
+        color: #fff;
+        text-align: center;
+        line-height: 60px;
+    }
+
+    .el-footer {
+        background-color: #fff;
         text-align: center;
         line-height: 60px;
     }
 
     .el-aside {
         line-height: 200px;
+        background-color: #E9EEF3;
     }
 
     .el-main {
-        background-color: #E9EEF3;
+        background-color: #fff;
         color: #333;
         text-align: center;
         line-height: 160px;
@@ -45,6 +52,7 @@
                 <el-row>
                     <el-col :span="24">
                         <el-menu
+                                background-color="#E9EEF3"
                                 default-active="2"
                                 class="el-menu-vertical-demo"
                                 @open="handleOpen"
@@ -80,7 +88,7 @@
             </el-aside>
             <el-container>
                 <el-main>
-                    <iframe scrolling="yes" frameborder="0" style="width:100%;min-height: 500px;" :src="main"></iframe>
+                    <iframe scrolling="yes" frameborder="0" style="width:100%;min-height: 700px;" :src="main"></iframe>
                 </el-main>
                 <el-footer>Footer</el-footer>
             </el-container>

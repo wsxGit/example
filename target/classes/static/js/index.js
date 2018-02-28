@@ -1,6 +1,8 @@
 new Vue({
     el:"#app",
-    data:{},
+    data:{
+        main:"/main"
+    },
     methods:{
         handleOpen(key, keyPath) {
             console.log(key, keyPath);

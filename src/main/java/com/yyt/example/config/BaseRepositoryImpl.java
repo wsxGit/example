@@ -19,18 +19,15 @@ import java.util.*;
 /**
  * Created by wangsixian on 2017/11/7.
  */
-public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID>
-        implements BaseRepository<T, ID> {
+public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BaseRepository<T, ID> {
 
     private final EntityManager entityManager;
 
-    //父类没有不带参数的构造方法，这里手动构造父类
     public BaseRepositoryImpl(Class<T> domainClass, EntityManager entityManager) {
         super(domainClass, entityManager);
         this.entityManager = entityManager;
     }
 
-    //通过EntityManager来完成查询
     @SuppressWarnings("unchecked")
     @Override
     public List<Object[]> listBySQL(String sql) {
@@ -66,7 +63,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 
     @Override
     public Page<T> findPage(Map<String, Object> filters) {
-        Integer page = Integer.parseInt(filters.get("curPage").toString())-1;
+        Integer page = Integer.parseInt(filters.get("curPage").toString()) - 1;
         Integer size = Integer.parseInt(filters.get("pageSize").toString());
         PageRequest pageRequest = new PageRequest(page, size);
         TypedQuery<T> query = getQuery(filters);
@@ -80,19 +77,14 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
     }
 
     protected <S extends T> TypedQuery<S> getQuery(Map filters, Class<S> domainClass) {
-
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<S> query = builder.createQuery(domainClass);
-
         Root<S> root = applyFiltersToCriteria(filters, domainClass, query);
         query.select(root);
-
-
         return entityManager.createQuery(query);
     }
 
-    private <S, U extends T> Root<U> applyFiltersToCriteria(Map filters, Class<U> domainClass,
-                                                            CriteriaQuery<S> query) {
+    private <S, U extends T> Root<U> applyFiltersToCriteria(Map filters, Class<U> domainClass, CriteriaQuery<S> query) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         Root<U> root = query.from(domainClass);
         List<Predicate> predicateList = new ArrayList<>();

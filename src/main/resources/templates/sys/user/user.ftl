@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<#include "../../common/common.ftl">
 <div id="app">
     <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -46,11 +47,6 @@
     </div>
 
 </div>
-<link rel="stylesheet" href="/static/lib/css/elementui.css">
-<script src="/static/lib/js/vue.min.js"></script>
-<script src="/static/lib/js/elementui.js"></script>
-<script src="/static/lib/js/axios.js"></script>
-<script src="/static/js/common.js"></script>
 <script src="/static/js/sys/user/user.js"></script>
 </body>
 </html>

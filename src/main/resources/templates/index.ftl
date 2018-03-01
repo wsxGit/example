@@ -55,6 +55,7 @@
                                 background-color="#E9EEF3"
                                 default-active="2"
                                 class="el-menu-vertical-demo"
+                                @select="route"
                                 @open="handleOpen"
                                 @close="handleClose">
                             <el-submenu index="1">
@@ -63,7 +64,7 @@
                                     <span>导航一</span>
                                 </template>
                                 <el-menu-item-group>
-                                    <el-menu-item index="1-1">选项1</el-menu-item>
+                                    <el-menu-item index="/user/index">用户管理</el-menu-item>
                                     <el-menu-item index="1-2">选项2</el-menu-item>
                                 </el-menu-item-group>
                                 <el-menu-item-group>
@@ -97,10 +98,9 @@
 
 
 </div>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<link rel="stylesheet" href="/static/lib/css/elementui.css">
+<script src="/static/lib/js/vue.min.js"></script>
+<script src="/static/lib/js/elementui.js"></script>
 <script src="/static/js/index.js"></script>
-
 </body>
 </html>

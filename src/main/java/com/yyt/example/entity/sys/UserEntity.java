@@ -1,7 +1,10 @@
 package com.yyt.example.entity.sys;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -13,8 +16,8 @@ public class UserEntity {
     private String userName;
     private Integer insertUser;
     private Integer updateUser;
-    private Timestamp createTime;
-    private Timestamp updateTime;
+    private Date createTime = new Date();
+    private Date updateTime = new Date();;
 
     @Id
     @Column(name = "user_id")
@@ -76,23 +79,24 @@ public class UserEntity {
         this.updateUser = updateUser;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @Basic
     @Column(name = "create_time")
-    public Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     @Basic
     @Column(name = "update_time")
-    public Timestamp getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 

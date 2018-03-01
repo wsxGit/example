@@ -2,20 +2,32 @@ var vm = new Vue({
     el: '#app',
     data() {
         return {
-            param:{},
-            page:{
+            param:{
                 curPage: 1,
                 pageSize: 10
             },
-            currentPage4: 4,
+            total: 0,
             tableData: []
         }
     },
     methods: {
         getList(){
-            ajaxPost("list",this.page,function (r) {
-                vm.tableData = r.data.content;
+            let that = this;
+            ajaxPost("list",this.param,function (r) {
+                that.tableData = r.data.content;
+                that.total = r.data.totalElements;
             })
+        },
+        query(page){
+            this.param.curPage = page.curPage;
+            this.param.pageSize = page.pageSize;
+            this.getList()
+        },
+        update(index,data){
+
+        },
+        delete(index,data){
+
         }
     },
     created(){

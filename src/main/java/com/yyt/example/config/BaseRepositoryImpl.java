@@ -9,10 +9,7 @@ import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.io.Serializable;
 import java.util.*;
 
@@ -63,13 +60,13 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 
     @Override
     public Page<T> findPage(Map<String, Object> filters) {
-        Integer page = Integer.parseInt(filters.get("curPage").toString()) - 1;
+        Integer page = Integer.parseInt(filters.get("curPage").toString()) ;
         Integer size = Integer.parseInt(filters.get("pageSize").toString());
-        PageRequest pageRequest = new PageRequest(page, size);
         TypedQuery<T> query = getQuery(filters);
-        query.setFirstResult(pageRequest.getOffset());
-        query.setMaxResults(pageRequest.getPageSize());
-        return new PageImpl<T>(query.getResultList());
+        query.setFirstResult((page-1)*size);
+        query.setMaxResults(size);
+        PageRequest pageRequest = new PageRequest(page-1, size);
+        return new PageImpl<>(query.getResultList(),pageRequest,getTotalCount(entityManager.getCriteriaBuilder(),filters,getDomainClass()));
     }
 
     protected TypedQuery<T> getQuery(Map filters) {
@@ -82,6 +79,13 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
         Root<S> root = applyFiltersToCriteria(filters, domainClass, query);
         query.select(root);
         return entityManager.createQuery(query);
+    }
+
+    private Long getTotalCount(CriteriaBuilder builder,Map filters,Class domainClass){
+        CriteriaQuery<Long> countQuery = builder.createQuery(Long.class);
+        Root countRoot = applyFiltersToCriteria(filters, domainClass, countQuery);
+        CriteriaQuery<Long> select = countQuery.select(builder.count(countRoot));
+        return entityManager.createQuery(select).getResultList().get(0);
     }
 
     private <S, U extends T> Root<U> applyFiltersToCriteria(Map filters, Class<U> domainClass, CriteriaQuery<S> query) {

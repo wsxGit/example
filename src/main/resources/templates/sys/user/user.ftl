@@ -9,43 +9,33 @@
 <div id="app">
     <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-        <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-        <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+        <el-breadcrumb-item>系统管理</el-breadcrumb-item>
+        <el-breadcrumb-item>用户管理</el-breadcrumb-item>
     </el-breadcrumb>
-    <br>
-    <hr style="height:2px;border:none;border-top:2px solid #409EFF;">
-    <br>
-    <el-input v-model="input" placeholder="请输入内容"></el-input>
-    <el-input v-model="input" placeholder="请输入内容"></el-input>
-    <el-button type="primary">查询</el-button>
-    <br>
-    <br>
-    <el-table :data="tableData" border style="width: 100%">
-        <el-table-column prop="userName" label="用户名称" width="180"></el-table-column>
-        <el-table-column prop="loginName" label="登录名称" width="180"></el-table-column>
+    <hr style="height:2px;border:none;border-top:2px solid #409EFF;margin-top: 15px;margin-bottom: 10px">
+    <el-input v-model="param.userName" placeholder="请输入用户名称"></el-input>
+    <el-input v-model="param.loginName" placeholder="请输入登录名称"></el-input>
+    <el-button-group>
+        <el-button type="primary" icon="el-icon-search" @click="getList">查询</el-button>
+        <el-button type="primary" icon="el-icon-refresh" @click="param.userName = '';param.loginName = ''">清空</el-button>
+        <el-button type="primary" icon="el-icon-plus">新增</el-button>
+    </el-button-group>
+    <br><br>
+    <el-table :data="tableData" border style="width: 100%" size="medium">
+        <el-table-column prop="userName" label="用户名称"></el-table-column>
+        <el-table-column prop="loginName" label="登录名称"></el-table-column>
         <el-table-column prop="createTime" label="创建日期"></el-table-column>
         <el-table-column prop="updateTime" label="修改日期"></el-table-column>
         <el-table-column label="操作">
             <template slot-scope="scope">
-                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                <el-button size="mini" @click="update(scope.$index, scope.row)">编辑</el-button>
+                <el-button size="mini" type="danger" @click="delete(scope.$index, scope.row)">删除</el-button>
             </template>
         </el-table-column>
     </el-table>
     <div style="float: right;margin-top: 10px">
-        <el-pagination
-                background
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page="page.curPage"
-                :page-sizes="[100, 200, 300, 400]"
-                :page-size="100"
-                layout="total, sizes, prev, pager, next, jumper"
-                :total="400">
-        </el-pagination>
+        <page :size="param.pageSize" :total="total" @click="query" @change="query"></page>
     </div>
-
 </div>
 <script src="/static/js/sys/user/user.js"></script>
 </body>

@@ -90,6 +90,7 @@ public class UserEntity {
         this.createTime = createTime;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @Basic
     @Column(name = "update_time")
     public Date getUpdateTime() {

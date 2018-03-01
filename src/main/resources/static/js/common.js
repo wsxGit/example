@@ -1,21 +1,27 @@
 Vue.component('page', {
     props: ["size", "total"],
-    template: ' <div style="float: right"><el-pagination background layout="total, prev, pager, next, jumper" :total="total" ' +
-    ':page-size="page.pageSize" @current-change="handlePageChange"></el-pagination></div>',
+    template: ' ' +
+    '<div style="float: right">' +
+    '<el-pagination background layout="total,sizes, prev, pager, next, jumper" :total="total" ' +
+    ':page-size="page.pageSize" @current-change="handlePageChange" @size-change="handleSizeChange">' +
+    '</el-pagination>' +
+    '</div>',
     data: function () {
         return {
             page: {
-                offset: 0,
                 curPage: 1,
                 pageSize: this.size
             }
         }
     },
     methods: {
-        handlePageChange: function (curPage) {
-            this.page.offset = (parseInt(curPage) - 1) * this.page.pageSize;
+        handlePageChange(curPage) {
             this.page.curPage = curPage;
             this.$emit("click", this.page)
+        },
+        handleSizeChange(size){
+            this.page.pageSize = size;
+            this.$emit("change", this.page)
         }
     }
 })

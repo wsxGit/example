@@ -28,7 +28,7 @@
         background-color: #fff;
         color: #333;
         text-align: center;
-        line-height: 160px;
+        /*line-height: 160px;*/
     }
 
     body > .el-container {
@@ -51,17 +51,12 @@
             <el-aside>
                 <el-row>
                     <el-col :span="24">
-                        <el-menu
-                                background-color="#E9EEF3"
-                                default-active="2"
-                                class="el-menu-vertical-demo"
-                                @select="route"
-                                @open="handleOpen"
-                                @close="handleClose">
+                        <el-menu background-color="#E9EEF3" default-active="/user/index" class="el-menu-vertical-demo"
+                                @select="route" @open="handleOpen" @close="handleClose">
                             <el-submenu index="1">
                                 <template slot="title">
-                                    <i class="el-icon-location"></i>
-                                    <span>导航一</span>
+                                    <i class="el-icon-menu"></i>
+                                    <span>系统管理</span>
                                 </template>
                                 <el-menu-item-group>
                                     <el-menu-item index="/user/index">用户管理</el-menu-item>
@@ -89,14 +84,12 @@
             </el-aside>
             <el-container>
                 <el-main>
-                    <iframe scrolling="yes" frameborder="0" style="width:100%;min-height: 700px;" :src="main"></iframe>
+                    <iframe scrolling="yes" frameborder="0" style="width:100%;min-height: 720px;" :src="main"></iframe>
                 </el-main>
                 <el-footer>Footer</el-footer>
             </el-container>
         </el-container>
     </el-container>
-
-
 </div>
 <link rel="stylesheet" href="/static/lib/css/elementui.css">
 <script src="/static/lib/js/vue.min.js"></script>

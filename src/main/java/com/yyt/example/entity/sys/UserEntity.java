@@ -3,14 +3,13 @@ package com.yyt.example.entity.sys;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "sys_user", schema = "wsx", catalog = "")
 public class UserEntity {
-    private int userId;
+    private Integer userId;
     private String loginName;
     private String loginPassword;
     private String userName;
@@ -21,11 +20,11 @@ public class UserEntity {
 
     @Id
     @Column(name = "user_id")
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

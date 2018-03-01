@@ -1,5 +1,6 @@
 package com.yyt.example.controller.sys;
 
+import com.yyt.example.common.Res;
 import com.yyt.example.entity.sys.UserEntity;
 import com.yyt.example.service.sys.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,22 @@ public class UserController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public Object list(@RequestParam Map<String,Object> param) {
+    public Res list(@RequestParam Map<String,Object> param) {
         Page<UserEntity> page = userService.findPage(param);
-        return page;
+        return Res.ok(page);
     }
 
     @RequestMapping("/save")
     @ResponseBody
-    public Object save(UserEntity userEntity) {
+    public Res save(UserEntity userEntity) {
         userService.save(userEntity);
-        return "";
+        return Res.ok();
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public Res delete(Integer userId) {
+        userService.delete(userId);
+        return Res.ok();
     }
 }

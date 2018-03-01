@@ -21,4 +21,8 @@ public class UserService {
     public void save(UserEntity userEntity) {
         userRepository.save(userEntity);
     }
+
+    public void delete(Integer id) {
+        userRepository.delete(id);
+    }
 }

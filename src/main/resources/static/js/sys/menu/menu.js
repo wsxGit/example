@@ -21,82 +21,19 @@ var vm = new Vue({
             },
             columns: [
                 {
-                    text: '姓名',
-                    dataIndex: 'name'
+                    text: '菜单名称',
+                    dataIndex: 'menuName'
                 },
                 {
-                    text: '年龄',
-                    dataIndex: 'age'
+                    text: '菜单url',
+                    dataIndex: 'menuUrl'
                 },
                 {
-                    text: '性别',
-                    dataIndex: 'sex'
+                    text: '排序号',
+                    dataIndex: 'menuSort'
                 }
             ],
-            dataSource: [
-                {
-                    id: 1,
-                    parentId: 0,
-                    name: '测试1',
-                    age: 18,
-                    sex: '男',
-                    children: [
-                        {
-                            id: 2,
-                            parentId: 1,
-                            name: '测试2',
-                            age: 22,
-                            sex: '男'
-                        }
-                    ]
-                },
-                {
-                    id: 3,
-                    parentId: 0,
-                    name: '测试3',
-                    age: 23,
-                    sex: '女',
-                    children: [
-                        {
-                            id: 4,
-                            parentId: 3,
-                            name: '测试4',
-                            age: 22,
-                            sex: '男'
-                        },
-                        {
-                            id: 5,
-                            parentId: 3,
-                            name: '测试5',
-                            age: 25,
-                            sex: '男'
-                        },
-                        {
-                            id: 6,
-                            parentId: 3,
-                            name: '测试6',
-                            age: 26,
-                            sex: '女',
-                            children: [
-                                {
-                                    id: 7,
-                                    parentId: 6,
-                                    name: '测试7',
-                                    age: 27,
-                                    sex: '男'
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 18,
-                    parentId: 0,
-                    name: '测试8',
-                    age: 18,
-                    sex: '男'
-                }
-            ]
+            dataSource: []
         }
     },
     methods: {
@@ -105,7 +42,7 @@ var vm = new Vue({
             this.param.pageSize = this.page.pageSize;
             let that = this;
             ajaxPost("list", this.param, function (r) {
-                that.tableData = r.data.data.content;
+                that.dataSource = r.data.data.content;
                 that.total = r.data.data.totalElements;
             })
         },

@@ -22,19 +22,6 @@
         </el-button-group>
         <br><br>
         <tree-grid :columns="columns" :tree-structure="true" :data-source="dataSource"></tree-grid>
-    <#--<el-table :data="tableData" border style="width: 100%" size="medium">-->
-            <#--<el-table-column prop="menuName" label="menuName"></el-table-column>-->
-            <#--<el-table-column prop="menuUrl" label="menuUrl"></el-table-column>-->
-            <#--<el-table-column prop="menuIcon" label="menuIcon"></el-table-column>-->
-            <#--<el-table-column prop="menuSort" label="menuSort"></el-table-column>-->
-            <#--<el-table-column prop="parentId" label="parentId"></el-table-column>-->
-            <#--<el-table-column label="操作">-->
-                <#--<template slot-scope="scope">-->
-                    <#--<el-button size="mini" @click="update(scope.$index, scope.row)">修改</el-button>-->
-                    <#--<el-button size="mini" type="danger" @click="remove(scope.$index, scope.row)">删除</el-button>-->
-                <#--</template>-->
-            <#--</el-table-column>-->
-        <#--</el-table>-->
         <#--<div style="float: right;margin-top: 10px">-->
             <#--<page :size="page.pageSize" :total="total" @click="query" @change="query"></page>-->
         <#--</div>-->

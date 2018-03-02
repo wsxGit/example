@@ -11,9 +11,6 @@ DataTransfer.treeToArray = function (data, parent, level, expandedAll) {
         if (record._expanded === undefined) {
             Vue.set(record, '_expanded', true)
         }
-        if (record.show === undefined) {
-            Vue.set(record, 'show', true)
-        }
         if (record.icon === undefined) {
             Vue.set(record, 'icon', true)
         }
@@ -82,9 +79,14 @@ Vue.component('tree-grid', {
         recursionToggle:function (children,flag) {
             for (var i = 0; i < children.length; i++) {
                 var obj = children[i];
-                obj._expanded = !obj._expanded;
+                if (!flag){
+                    obj._expanded = false;
+                }else {
+                    obj._expanded = true;
+                    obj.icon = true;
+                }
                 if (obj.children != undefined){
-                    this.recursionToggle(obj.children)
+                    this.recursionToggle(obj.children,flag)
                 }
             }
         },
@@ -96,10 +98,6 @@ Vue.component('tree-grid', {
             me.data[trIndex].icon = !me.data[trIndex].icon;
             let children = record.children;
             this.recursionToggle(children,me.data[trIndex].icon)
-            for (var i = 0; i < this.data.length; i++) {
-                var obj = this.data[i];
-                console.log(obj._show)
-            }
         },
         // 显示层级关系的空格和图标
         spaceIconShow(index) {

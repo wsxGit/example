@@ -6,7 +6,7 @@
 </head>
 <body>
 <#include "../../common/common.ftl">
-<el-row id="app">
+<div id="app">
     <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item>系统管理</el-breadcrumb-item>
@@ -19,7 +19,7 @@
         <el-button-group>
             <el-button type="primary" icon="el-icon-search" @click="getList">查询</el-button>
             <el-button type="primary" icon="el-icon-refresh" @click="reset">清空</el-button>
-            <el-button type="primary" icon="el-icon-plus" @click="showList = false">新增</el-button>
+            <el-button type="primary" icon="el-icon-plus" @click="add">新增</el-button>
         </el-button-group>
         <br><br>
         <el-table :data="tableData" border style="width: 100%" size="medium">
@@ -29,7 +29,7 @@
             <el-table-column prop="updateTime" label="修改日期"></el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
-                    <el-button size="mini" @click="update(scope.$index, scope.row)">编辑</el-button>
+                    <el-button size="mini" @click="update(scope.$index, scope.row)">修改</el-button>
                     <el-button size="mini" type="danger" @click="remove(scope.$index, scope.row)">删除</el-button>
                 </template>
             </el-table-column>
@@ -39,27 +39,34 @@
         </div>
     </div>
     <el-row v-show="!showList">
-        <el-col :span="16">
-            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-                <el-form-item label="用户名称" prop="userName">
-                    <el-input v-model="ruleForm.userName"></el-input>
-                </el-form-item>
-                <el-form-item label="登录名" prop="loginName">
-                    <el-input v-model="ruleForm.loginName"></el-input>
-                </el-form-item>
-                <el-form-item label="密码" prop="loginPassword">
-                    <el-input v-model="ruleForm.loginPassword"></el-input>
-                </el-form-item>
-                <el-form-item>
-                    <el-button-group>
-                        <el-button type="primary" icon="el-icon-check" @click="submitForm('ruleForm')">提交</el-button>
-                        <el-button type="primary" icon="el-icon-back" @click="showList = true">返回</el-button>
-                    </el-button-group>
-                </el-form-item>
-            </el-form>
+        <el-col :span="7">
+            <div style="border: 1px solid #409EFF;border-radius: 4px;">
+                <div style="background-color: #409eff;border-radius: 1px;color: #fff;padding-top: 20px;text-align: center;padding-bottom: 20px">
+                    {{title}}
+                </div>
+                <br><br>
+                <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+                    <el-form-item label="用户名称" prop="userName">
+                        <el-input v-model="ruleForm.userName" maxlength="20"></el-input>
+                    </el-form-item>
+                    <el-form-item label="登录名" prop="loginName">
+                        <el-input v-model="ruleForm.loginName" maxlength="20"></el-input>
+                    </el-form-item>
+                    <el-form-item label="密码" prop="loginPassword">
+                        <el-input v-model="ruleForm.loginPassword" maxlength="20"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button-group>
+                            <el-button type="primary" icon="el-icon-check" @click="submitForm('ruleForm')">提交
+                            </el-button>
+                            <el-button type="primary" icon="el-icon-back" @click="showList = true">返回</el-button>
+                        </el-button-group>
+                    </el-form-item>
+                </el-form>
+            </div>
         </el-col>
     </el-row>
-    </div>
-    <script src="/static/js/sys/user/user.js"></script>
+</div>
+<script src="/static/js/sys/user/user.js"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@ var vm = new Vue({
     data() {
         return {
             showList: true,
+            title: '',
             param:{},
             page: {
                 curPage: 1,
@@ -35,6 +36,15 @@ var vm = new Vue({
         reset(){
             this.param = {};
         },
+        add(){
+            this.showList = false;
+            this.title = '新增';
+        },
+        update(index,data){
+            this.title = '修改';
+            this.ruleForm = data;
+            this.showList = false;
+        },
         submitForm(formName) {
             let that = this;
             this.$refs[formName].validate((valid) => {
@@ -51,10 +61,6 @@ var vm = new Vue({
         },
         resetForm(formName) {
             this.$refs[formName].resetFields();
-        },
-        update(index,data){
-            this.ruleForm = data;
-            this.showList = false;
         },
         remove(index,data){
             this.$confirm('确认删除吗?', '提示', {

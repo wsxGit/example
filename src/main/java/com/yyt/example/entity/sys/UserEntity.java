@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "sys_user", schema = "wsx", catalog = "")
@@ -16,7 +18,8 @@ public class UserEntity {
     private Integer insertUser;
     private Integer updateUser;
     private Date createTime = new Date();
-    private Date updateTime = new Date();;
+    private Date updateTime = new Date();
+    private Set<RoleEntity> roles = new HashSet<>();
 
     @Id
     @Column(name = "user_id")
@@ -98,6 +101,17 @@ public class UserEntity {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinTable(name = "sys_user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "role_id") })
+    public Set<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleEntity> roles) {
+        this.roles = roles;
     }
 
     @Override

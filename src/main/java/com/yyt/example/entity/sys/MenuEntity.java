@@ -1,6 +1,8 @@
 package com.yyt.example.entity.sys;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -12,6 +14,7 @@ public class MenuEntity {
     private Integer parentId;
     private String menuIcon;
     private Integer menuSort;
+    private List<MenuEntity> children = new ArrayList<>();
 
     @Id
     @Column(name = "menu_id")
@@ -71,6 +74,15 @@ public class MenuEntity {
 
     public void setMenuSort(Integer menuSort) {
         this.menuSort = menuSort;
+    }
+
+    @Transient
+    public List<MenuEntity> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<MenuEntity> children) {
+        this.children = children;
     }
 
     @Override

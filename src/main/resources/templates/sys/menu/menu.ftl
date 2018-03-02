@@ -21,22 +21,23 @@
             <el-button type="primary" icon="el-icon-plus" @click="add">新增</el-button>
         </el-button-group>
         <br><br>
-        <el-table :data="tableData" border style="width: 100%" size="medium">
-            <el-table-column prop="menuName" label="menuName"></el-table-column>
-            <el-table-column prop="menuUrl" label="menuUrl"></el-table-column>
-            <el-table-column prop="menuIcon" label="menuIcon"></el-table-column>
-            <el-table-column prop="menuSort" label="menuSort"></el-table-column>
-            <el-table-column prop="parentId" label="parentId"></el-table-column>
-            <el-table-column label="操作">
-                <template slot-scope="scope">
-                    <el-button size="mini" @click="update(scope.$index, scope.row)">修改</el-button>
-                    <el-button size="mini" type="danger" @click="remove(scope.$index, scope.row)">删除</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
-        <div style="float: right;margin-top: 10px">
-            <page :size="page.pageSize" :total="total" @click="query" @change="query"></page>
-        </div>
+        <tree-grid :columns="columns" :tree-structure="true" :data-source="dataSource"></tree-grid>
+    <#--<el-table :data="tableData" border style="width: 100%" size="medium">-->
+            <#--<el-table-column prop="menuName" label="menuName"></el-table-column>-->
+            <#--<el-table-column prop="menuUrl" label="menuUrl"></el-table-column>-->
+            <#--<el-table-column prop="menuIcon" label="menuIcon"></el-table-column>-->
+            <#--<el-table-column prop="menuSort" label="menuSort"></el-table-column>-->
+            <#--<el-table-column prop="parentId" label="parentId"></el-table-column>-->
+            <#--<el-table-column label="操作">-->
+                <#--<template slot-scope="scope">-->
+                    <#--<el-button size="mini" @click="update(scope.$index, scope.row)">修改</el-button>-->
+                    <#--<el-button size="mini" type="danger" @click="remove(scope.$index, scope.row)">删除</el-button>-->
+                <#--</template>-->
+            <#--</el-table-column>-->
+        <#--</el-table>-->
+        <#--<div style="float: right;margin-top: 10px">-->
+            <#--<page :size="page.pageSize" :total="total" @click="query" @change="query"></page>-->
+        <#--</div>-->
     </div>
     <el-row v-show="!showList">
         <el-col :span="8">
@@ -73,6 +74,22 @@
         </el-col>
     </el-row>
 </div>
+<style scoped>
+    .ms-tree-space{position: relative;
+        top: 1px;
+        display: inline-block;
+        font-family: 'Glyphicons Halflings';
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1;
+        width: 18px;
+        height: 14px;}
+    .ms-tree-space::before{content: ""}
+    table td{
+        line-height: 26px;
+    }
+</style>
+<script src="/static/lib/js/treeTable.js"></script>
 <script src="/static/js/sys/menu/menu.js"></script>
 </body>
 </html>

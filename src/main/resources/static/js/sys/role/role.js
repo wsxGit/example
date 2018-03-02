@@ -4,7 +4,7 @@ var vm = new Vue({
         return {
             showList: true,
             title: '',
-            param:{},
+            param: {},
             page: {
                 curPage: 1,
                 pageSize: 10
@@ -13,34 +13,32 @@ var vm = new Vue({
             tableData: [],
             ruleForm: {},
             rules: {
-                userName: [{ required: true, message: '请输用户名称', trigger: 'blur' }],
-                loginName: [{ required: true, message: '请输登录名', trigger: 'blur' }],
-                loginPassword: [{ required: true, message: '请输密码', trigger: 'blur' }],
+                roleName: [{required: true, message: '请输入角色名称', trigger: 'blur'}],
             }
         }
     },
     methods: {
-        getList(){
+        getList() {
             this.param.curPage = this.page.curPage;
             this.param.pageSize = this.page.pageSize;
             let that = this;
-            ajaxPost("list",this.param,function (r) {
+            ajaxPost("list", this.param, function (r) {
                 that.tableData = r.data.data.content;
                 that.total = r.data.data.totalElements;
             })
         },
-        query(page){
+        query(page) {
             this.page = page;
             this.getList()
         },
-        reset(){
+        reset() {
             this.param = {};
         },
-        add(){
+        add() {
             this.showList = false;
             this.title = '新增';
         },
-        update(index,data){
+        update(index, data) {
             this.title = '修改';
             this.ruleForm = data;
             this.showList = false;
@@ -49,8 +47,8 @@ var vm = new Vue({
             let that = this;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    ajaxPost("save",this.ruleForm,function (r) {
-                        that.$message({showClose: true,message: '操作成功',type: 'success'});
+                    ajaxPost("save", this.ruleForm, function (r) {
+                        that.$message({showClose: true, message: '操作成功', type: 'success'});
                         that.showList = true;
                         that.getList();
                     })
@@ -63,21 +61,21 @@ var vm = new Vue({
         resetForm(formName) {
             this.$refs[formName].resetFields();
         },
-        remove(index,data){
+        remove(index, data) {
             this.$confirm('确认删除吗?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(() => {
                 let that = this;
-                ajaxGet('delete?id='+data.userId,data,function (r) {
-                    that.$message({type: 'success',message: '删除成功!'})
+                ajaxGet('delete?id=' + data.id, data, function (r) {
+                    that.$message({type: 'success', message: '删除成功!'})
                     that.getList();
                 })
             });
         }
     },
-    created(){
+    created() {
         this.getList();
     }
 })

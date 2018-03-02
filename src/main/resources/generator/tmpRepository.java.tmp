@@ -1,0 +1,7 @@
+package com.yyt.example.repository.sys;
+
+import com.yyt.example.config.BaseRepository;
+import #wholeClassName;
+
+public interface #simpleClassNameRepository extends BaseRepository<#className, #id> {
+}

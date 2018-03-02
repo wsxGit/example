@@ -40,8 +40,8 @@ public class UserController {
 
     @RequestMapping("/delete")
     @ResponseBody
-    public Res delete(Integer userId) {
-        userService.delete(userId);
+    public Res delete(Integer id) {
+        userService.delete(id);
         return Res.ok();
     }
 }

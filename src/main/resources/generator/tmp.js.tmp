@@ -13,9 +13,7 @@ var vm = new Vue({
             tableData: [],
             ruleForm: {},
             rules: {
-                userName: [{ required: true, message: '请输用户名称', trigger: 'blur' }],
-                loginName: [{ required: true, message: '请输登录名', trigger: 'blur' }],
-                loginPassword: [{ required: true, message: '请输密码', trigger: 'blur' }],
+            #for
             }
         }
     },
@@ -70,7 +68,7 @@ var vm = new Vue({
                 type: 'warning'
             }).then(() => {
                 let that = this;
-                ajaxGet('delete?id='+data.userId,data,function (r) {
+                ajaxGet('delete?id='+data.id,data,function (r) {
                     that.$message({type: 'success',message: '删除成功!'})
                     that.getList();
                 })

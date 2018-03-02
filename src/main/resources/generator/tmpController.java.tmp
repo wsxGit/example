@@ -1,0 +1,47 @@
+package com.yyt.example.controller.sys;
+
+import com.yyt.example.common.Res;
+import #wholeClassName;
+import com.yyt.example.service.sys.#simpleClassNameService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Map;
+
+@Controller
+@RequestMapping("/#var")
+public class #simpleClassNameController {
+
+    @Autowired
+    private #simpleClassNameService #varService;
+
+    @RequestMapping("/index")
+    public Object index() {
+        return "sys/#var/#var";
+    }
+
+    @RequestMapping("/list")
+    @ResponseBody
+    public Res list(@RequestParam Map<String,Object> param) {
+        Page<#className> page = #varService.findPage(param);
+        return Res.ok(page);
+    }
+
+    @RequestMapping("/save")
+    @ResponseBody
+    public Res save(#className #var) {
+        #varService.save(#var);
+        return Res.ok();
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public Res delete(#id id) {
+        #varService.delete(id);
+        return Res.ok();
+    }
+}

@@ -1,0 +1,28 @@
+package com.yyt.example.service.sys;
+
+import #wholeClassName;
+import com.yyt.example.repository.sys.#simpleClassNameRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
+
+@Service
+public class #simpleClassNameService {
+
+    @Autowired
+    private #simpleClassNameRepository #varRepository;
+
+    public Page<#className> findPage(Map<String, Object> param) {
+        return #varRepository.findPage(param);
+    }
+
+    public void save(#className #var) {
+        #varRepository.save(#var);
+    }
+
+    public void delete(#id primaryKey) {
+        #varRepository.delete(primaryKey);
+    }
+}

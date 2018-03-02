@@ -14,8 +14,7 @@
     </el-breadcrumb>
     <hr style="height:2px;border:none;border-top:2px solid #409EFF;margin-top: 15px;margin-bottom: 10px">
     <div v-show="showList">
-        <el-input v-model="param.userName" placeholder="请输入用户名称"></el-input>
-        <el-input v-model="param.loginName" placeholder="请输入登录名称"></el-input>
+        <el-input v-model="param.name" placeholder="请输入名称"></el-input>
         <el-button-group>
             <el-button type="primary" icon="el-icon-search" @click="getList">查询</el-button>
             <el-button type="primary" icon="el-icon-refresh" @click="reset">清空</el-button>
@@ -23,10 +22,7 @@
         </el-button-group>
         <br><br>
         <el-table :data="tableData" border style="width: 100%" size="medium">
-            <el-table-column prop="userName" label="用户名称"></el-table-column>
-            <el-table-column prop="loginName" label="登录名称"></el-table-column>
-            <el-table-column prop="createTime" label="创建日期"></el-table-column>
-            <el-table-column prop="updateTime" label="修改日期"></el-table-column>
+            #fortable
             <el-table-column label="操作">
                 <template slot-scope="scope">
                     <el-button size="mini" @click="update(scope.$index, scope.row)">修改</el-button>
@@ -46,15 +42,7 @@
                 </div>
                 <br><br>
                 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="160px" class="demo-ruleForm">
-                    <el-form-item label="用户名称" prop="userName">
-                        <el-input v-model="ruleForm.userName" maxlength="20"></el-input>
-                    </el-form-item>
-                    <el-form-item label="登录名" prop="loginName">
-                        <el-input v-model="ruleForm.loginName" maxlength="20"></el-input>
-                    </el-form-item>
-                    <el-form-item label="密码" prop="loginPassword">
-                        <el-input v-model="ruleForm.loginPassword" maxlength="20"></el-input>
-                    </el-form-item>
+                    #forform
                     <el-form-item>
                         <el-button-group>
                             <el-button type="primary" icon="el-icon-check" @click="submitForm('ruleForm')">提交
@@ -67,6 +55,6 @@
         </el-col>
     </el-row>
 </div>
-<script src="/static/js/sys/user/user.js"></script>
+<script src="/static/js/#modlue/#var/#var.js"></script>
 </body>
 </html>

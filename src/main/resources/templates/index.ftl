@@ -60,7 +60,8 @@
                                 </template>
                                 <el-menu-item-group>
                                     <el-menu-item index="/user/index">用户管理</el-menu-item>
-                                    <el-menu-item index="1-2">选项2</el-menu-item>
+                                    <el-menu-item index="/role/index">角色管理</el-menu-item>
+                                    <el-menu-item index="/menu/index">菜单管理</el-menu-item>
                                 </el-menu-item-group>
                                 <el-menu-item-group>
                                     <el-menu-item index="1-3">选项3</el-menu-item>

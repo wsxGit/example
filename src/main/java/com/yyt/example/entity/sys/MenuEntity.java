@@ -14,10 +14,12 @@ public class MenuEntity {
     private Integer parentId;
     private String menuIcon;
     private Integer menuSort;
+    private Integer menuType;
     private List<MenuEntity> children = new ArrayList<>();
 
     @Id
     @Column(name = "menu_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getMenuId() {
         return menuId;
     }
@@ -74,6 +76,16 @@ public class MenuEntity {
 
     public void setMenuSort(Integer menuSort) {
         this.menuSort = menuSort;
+    }
+
+    @Basic
+    @Column(name = "menu_type")
+    public Integer getMenuType() {
+        return menuType;
+    }
+
+    public void setMenuType(Integer menuType) {
+        this.menuType = menuType;
     }
 
     @Transient

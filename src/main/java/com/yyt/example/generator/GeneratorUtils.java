@@ -89,9 +89,9 @@ public class GeneratorUtils {
 
                     StringBuilder sb2 = new StringBuilder();
                     for (String filedName : filedNames) {
-                        String s = "<el-table-column prop=\""+filedName+"\" label=\""+filedName+"\"></el-table-column>\n";
+                        String s = "            <el-table-column prop=\""+filedName+"\" label=\""+filedName+"\"></el-table-column>\n";
                         sb.append(s);
-                        String form = "<el-form-item label=\""+filedName+"\" prop=\""+filedName+"\">\n" +
+                        String form = "                    <el-form-item label=\""+filedName+"\" prop=\""+filedName+"\">\n" +
                                 "                        <el-input v-model=\"ruleForm."+filedName+"\" maxlength=\"20\"></el-input>\n" +
                                 "                    </el-form-item>\n";
                         sb2.append(form);
@@ -113,11 +113,11 @@ public class GeneratorUtils {
                     wholePath = path + "/java/com/yyt/example/controller/"+parseEntity.getModule();
                 }
                 if (template.getFileName().equals("tmp.ftl.tmp")){
-                    wholePath = path + "/resources/templates/"+parseEntity.getModule()+"/"+parseEntity.getVar();
+                    wholePath = path + "/resources/templates/"+parseEntity.getModule();
                     fileName = lowerCaseFirst(fileName);
                 }
                 if (template.getFileName().equals("tmp.js.tmp")){
-                    wholePath = path + "/resources/static/js/"+parseEntity.getModule()+"/"+parseEntity.getVar();
+                    wholePath = path + "/resources/static/js/"+parseEntity.getModule();
                     fileName = lowerCaseFirst(fileName);
                 }
                 file = new File(wholePath);

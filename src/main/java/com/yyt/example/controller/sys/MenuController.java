@@ -21,7 +21,7 @@ public class MenuController {
 
     @RequestMapping("/index")
     public Object index() {
-        return "sys/menu/menu";
+        return "sys/menu";
     }
 
     @RequestMapping("/list")

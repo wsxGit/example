@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<#include "../../common/common.ftl">
+<#include "../common/common.ftl">
 <div id="app">
     <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -35,7 +35,7 @@
         </div>
     </div>
     <el-row v-show="!showList">
-        <el-col :span="8">
+        <el-col>
             <div style="border: 1px solid #409EFF;border-radius: 4px;">
                 <div style="background-color: #409eff;border-radius: 1px;color: #fff;padding-top: 20px;text-align: center;padding-bottom: 20px">
                     {{title}}
@@ -55,6 +55,6 @@
         </el-col>
     </el-row>
 </div>
-<script src="/static/js/#modlue/#var/#var.js"></script>
+<script src="/static/js/#modlue/#var.js"></script>
 </body>
 </html>

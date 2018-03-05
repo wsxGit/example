@@ -11,7 +11,7 @@ public class GeneratorMain {
 
     public static void main(String[] args) throws Exception {
         List<ParseEntity> parseEntities = new ArrayList<>();
-        parseEntities.add(new ParseEntity(MenuEntity.class, "Integer", "菜单管理", "sys"));
+        parseEntities.add(new ParseEntity(MenuEntity.class, "Integer", "A管理", "sys"));
         GeneratorUtils.replaceContent(parseEntities, "D:\\Demo\\example\\src\\main");
     }
 }

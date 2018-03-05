@@ -21,7 +21,7 @@ public class RoleController {
 
     @RequestMapping("/index")
     public Object index() {
-        return "sys/role/role";
+        return "sys/role";
     }
 
     @RequestMapping("/list")

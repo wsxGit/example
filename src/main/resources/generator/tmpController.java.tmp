@@ -21,7 +21,7 @@ public class #simpleClassNameController {
 
     @RequestMapping("/index")
     public Object index() {
-        return "sys/#var/#var";
+        return "sys/#var";
     }
 
     @RequestMapping("/list")

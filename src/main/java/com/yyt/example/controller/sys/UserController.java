@@ -21,7 +21,7 @@ public class UserController {
 
     @RequestMapping("/index")
     public Object index() {
-        return "sys/user/user";
+        return "sys/user";
     }
 
     @RequestMapping("/list")

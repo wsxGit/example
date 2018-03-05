@@ -68,7 +68,7 @@ var vm = new Vue({
                 type: 'warning'
             }).then(() => {
                 let that = this;
-                ajaxGet('delete?id=' + data.id, data, function (r) {
+                ajaxGet('delete?id=' + data.roleId, data, function (r) {
                     that.$message({type: 'success', message: '删除成功!'})
                     that.getList();
                 })

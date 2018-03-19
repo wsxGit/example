@@ -32,7 +32,7 @@ DataTransfer.treeToArray = function (data, parent, level, expandedAll) {
 }
 Vue.component('tree-grid', {
     props:["treeStructure","columns","dataSource","requestUrl","defaultExpandAll"] ,
-    template: '<el-table :data="data" border  :row-style="showTr" style="width: 100%" @selection-change="handleSelectionChange">  ' +
+    template: '<el-table size="medium" :data="data" border  :row-style="showTr" style="width: 100%" @selection-change="handleSelectionChange">  ' +
     '<el-table-column type="selection" ></el-table-column>'+
     '<el-table-column v-for="(column, index) in columns" :key="column.dataIndex"  ' +
     '  :label="column.text">  ' +

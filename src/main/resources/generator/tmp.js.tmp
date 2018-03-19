@@ -19,8 +19,10 @@ var vm = new Vue({
     },
     methods: {
         getList(){
-            this.param.curPage = this.page.curPage;
-            this.param.pageSize = this.page.pageSize;
+	    this.param.curPage = curPage;
+            this.param.pageSize = pageSize;
+            this.page.curPage = curPage;
+            this.page.pageSize = pageSize;
             let that = this;
             ajaxPost("list",this.param,function (r) {
                 that.tableData = r.data.data.content;
@@ -29,12 +31,13 @@ var vm = new Vue({
         },
         query(page){
             this.page = page;
-            this.getList()
+            this.getList(page.curPage,page.pageSize)
         },
         reset(){
             this.param = {};
         },
         add(){
+            this.ruleForm = {};
             this.showList = false;
             this.title = '新增';
         },
@@ -50,7 +53,7 @@ var vm = new Vue({
                     ajaxPost("save",this.ruleForm,function (r) {
                         that.$message({showClose: true,message: '操作成功',type: 'success'});
                         that.showList = true;
-                        that.getList();
+                        that.getList(1,that.page.pageSize);
                     })
                 } else {
                     console.log('error submit!!');
@@ -70,12 +73,12 @@ var vm = new Vue({
                 let that = this;
                 ajaxGet('delete?id='+data.id,data,function (r) {
                     that.$message({type: 'success',message: '删除成功!'})
-                    that.getList();
+                    that.getList(that.page.curPage,that.page.pageSize);
                 })
             });
         }
     },
     created(){
-        this.getList();
+        this.getList(1,this.page.pageSize);
     }
 })

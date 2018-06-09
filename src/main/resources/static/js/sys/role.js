@@ -4,10 +4,9 @@ var vm = new Vue({
         return {
             showList: true,
             title: '',
-            param: {},
-            page: {
+            param: {
                 curPage: 1,
-                pageSize: 10
+                pageSize: 2
             },
             total: 0,
             tableData: [],
@@ -18,11 +17,9 @@ var vm = new Vue({
         }
     },
     methods: {
-        getList(curPage,pageSize) {
+        getList(curPage, pageSize) {
             this.param.curPage = curPage;
             this.param.pageSize = pageSize;
-            this.page.curPage = curPage;
-            this.page.pageSize = pageSize;
             let that = this;
             ajaxPost("list", this.param, function (r) {
                 that.tableData = r.data.data.content;
@@ -31,10 +28,13 @@ var vm = new Vue({
         },
         query(page) {
             this.page = page;
-            this.getList(page.curPage,page.pageSize)
+            this.getList(page.curPage, page.pageSize)
         },
         reset() {
-            this.param = {};
+            this.param = {
+                curPage: 1,
+                pageSize: 2
+            }
         },
         add() {
             this.ruleForm = {};
@@ -53,7 +53,7 @@ var vm = new Vue({
                     ajaxPost("save", this.ruleForm, function (r) {
                         that.$message({showClose: true, message: '操作成功', type: 'success'});
                         that.showList = true;
-                        that.getList(1,that.page.pageSize);
+                        that.getList(1, that.page.pageSize);
                     })
                 } else {
                     console.log('error submit!!');
@@ -73,12 +73,12 @@ var vm = new Vue({
                 let that = this;
                 ajaxGet('delete?id=' + data.roleId, data, function (r) {
                     that.$message({type: 'success', message: '删除成功!'})
-                    that.getList(that.page.curPage,that.page.pageSize);
+                    that.getList(that.page.curPage, that.page.pageSize);
                 })
             });
         }
     },
     created() {
-        this.getList(1,this.page.pageSize);
+        this.getList(this.param.curPage, this.param.pageSize);
     }
 })

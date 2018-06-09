@@ -51,7 +51,7 @@
             <el-aside>
                 <el-row>
                     <el-col :span="24">
-                        <el-menu background-color="#E9EEF3" default-active="/user/index" class="el-menu-vertical-demo"
+                        <el-menu background-color="#E9EEF3" class="el-menu-vertical-demo"
                                 @select="route" @open="handleOpen" @close="handleClose">
                             <el-submenu index="1">
                                 <template slot="title">

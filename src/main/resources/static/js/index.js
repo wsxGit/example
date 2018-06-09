@@ -1,4 +1,4 @@
-var vm = new Vue({
+new Vue({
     el: '#app',
     data() {
         return {
@@ -12,12 +12,8 @@ var vm = new Vue({
         handleClose(key, keyPath) {
             console.log(key, keyPath);
         },
-        route(key, keyPath){
+        route(key, keyPath) {
             this.main = key;
         }
-
-    },
-    created: {
-
     }
 })

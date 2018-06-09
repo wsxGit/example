@@ -92,7 +92,7 @@ public class GeneratorUtils {
                         String s = "            <el-table-column prop=\""+filedName+"\" label=\""+filedName+"\"></el-table-column>\n";
                         sb.append(s);
                         String form = "                    <el-form-item label=\""+filedName+"\" prop=\""+filedName+"\">\n" +
-                                "                        <el-input size=\"medium\" v-model=\"ruleForm."+filedName+"\" maxlength=\"20\"></el-input>\n" +
+                                "                        <el-input v-model=\"ruleForm."+filedName+"\" maxlength=\"20\"></el-input>\n" +
                                 "                    </el-form-item>\n";
                         sb2.append(form);
                     }

@@ -8,23 +8,25 @@
 <#include "../common/common.ftl">
 <div id="app">
     <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item>首页</el-breadcrumb-item>
         <el-breadcrumb-item>系统管理</el-breadcrumb-item>
         <el-breadcrumb-item>用户管理</el-breadcrumb-item>
     </el-breadcrumb>
     <hr style="height:2px;border:none;border-top:2px solid #409EFF;margin-top: 15px;margin-bottom: 10px">
     <div v-show="showList">
-        <el-input v-model="param.name" placeholder="请输入名称" size="medium"></el-input>
+        <el-input v-model="param.name" placeholder="请输入名称" size="small"></el-input>
         <el-button-group>
-            <el-button type="primary" icon="el-icon-search" @click="getList(1,page.pageSize)" size="medium">查询</el-button>
-            <el-button type="primary" icon="el-icon-refresh" @click="reset" size="medium">清空</el-button>
-            <el-button type="primary" icon="el-icon-plus" @click="add" size="medium">新增</el-button>
+            <el-button type="primary" icon="el-icon-search" @click="getList(1,page.pageSize)" size="small">查询
+            </el-button>
+            <el-button type="primary" icon="el-icon-refresh" @click="reset" size="small">清空</el-button>
+            <el-button type="primary" icon="el-icon-plus" @click="add" size="small">新增</el-button>
         </el-button-group>
         <br><br>
         <tree-grid :columns="columns" :tree-structure="true" :data-source="dataSource"></tree-grid>
-        <#--<div style="float: right;margin-top: 10px">-->
-            <#--<page :size="page.pageSize" :total="total" @click="query" @change="query"></page>-->
-        <#--</div>-->
+        <div style="float: right;margin-top: 10px">
+            <page :size="param.pageSize" :cur-page.sync="param.curPage" :total="total" @click="query"
+                  @change="query"></page>
+        </div>
     </div>
     <el-row v-show="!showList">
         <el-col>
@@ -33,28 +35,27 @@
                     {{title}}
                 </div>
                 <br><br>
-                <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="160px" class="demo-ruleForm">
+                <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="20%" class="demo-ruleForm"
+                         size="small">
                     <el-form-item label="menuIcon" prop="menuIcon">
-                        <el-input v-model="ruleForm.menuIcon" maxlength="20" size="medium"></el-input>
+                        <el-input v-model="ruleForm.menuIcon" maxlength="20"></el-input>
                     </el-form-item>
                     <el-form-item label="menuSort" prop="menuSort">
-                        <el-input v-model="ruleForm.menuSort" maxlength="20" size="medium"></el-input>
+                        <el-input v-model="ruleForm.menuSort" maxlength="20"></el-input>
                     </el-form-item>
                     <el-form-item label="menuName" prop="menuName">
-                        <el-input v-model="ruleForm.menuName" maxlength="20" size="medium"></el-input>
+                        <el-input v-model="ruleForm.menuName" maxlength="20"></el-input>
                     </el-form-item>
                     <el-form-item label="menuUrl" prop="menuUrl">
-                        <el-input v-model="ruleForm.menuUrl" maxlength="20" size="medium"></el-input>
+                        <el-input v-model="ruleForm.menuUrl" maxlength="20"></el-input>
                     </el-form-item>
                     <el-form-item label="parentId" prop="parentId">
-                        <el-input v-model="ruleForm.parentId" maxlength="20" size="medium"></el-input>
+                        <el-input v-model="ruleForm.parentId" maxlength="20"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button-group>
-                            <el-button type="primary" icon="el-icon-check" @click="submitForm('ruleForm')" size="medium">提交
-                            </el-button>
-                            <el-button type="primary" icon="el-icon-back" @click="showList = true" size="medium">返回</el-button>
-                        </el-button-group>
+                        <el-button type="primary" icon="el-icon-check" @click="submitForm('ruleForm')">提交
+                        </el-button>
+                        <el-button type="warning" icon="el-icon-back" @click="showList = true">返回</el-button>
                     </el-form-item>
                 </el-form>
             </div>
@@ -62,7 +63,8 @@
     </el-row>
 </div>
 <style scoped>
-    .ms-tree-space{position: relative;
+    .ms-tree-space {
+        position: relative;
         top: 1px;
         display: inline-block;
         font-family: 'Glyphicons Halflings';
@@ -70,9 +72,14 @@
         font-weight: 400;
         line-height: 1;
         width: 18px;
-        height: 14px;}
-    .ms-tree-space::before{content: ""}
-    table td{
+        height: 14px;
+    }
+
+    .ms-tree-space::before {
+        content: ""
+    }
+
+    table td {
         line-height: 26px;
     }
 </style>

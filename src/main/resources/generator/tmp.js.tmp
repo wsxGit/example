@@ -4,10 +4,9 @@ var vm = new Vue({
         return {
             showList: true,
             title: '',
-            param:{},
-            page: {
-                curPage: 1,
-                pageSize: 10
+            param: {
+             curPage: 1,
+             pageSize: 2
             },
             total: 0,
             tableData: [],
@@ -18,23 +17,24 @@ var vm = new Vue({
         }
     },
     methods: {
-        getList(){
-	    this.param.curPage = curPage;
-            this.param.pageSize = pageSize;
-            this.page.curPage = curPage;
-            this.page.pageSize = pageSize;
-            let that = this;
-            ajaxPost("list",this.param,function (r) {
-                that.tableData = r.data.data.content;
-                that.total = r.data.data.totalElements;
-            })
-        },
+        getList(curPage, pageSize) {
+           this.param.curPage = curPage;
+           this.param.pageSize = pageSize;
+           let that = this;
+           ajaxPost("list", this.param, function (r) {
+               that.tableData = r.data.data.content;
+               that.total = r.data.data.totalElements;
+           })
+       },
         query(page){
             this.page = page;
             this.getList(page.curPage,page.pageSize)
         },
-        reset(){
-            this.param = {};
+        reset() {
+           this.param = {
+               curPage: 1,
+               pageSize: 2
+           }
         },
         add(){
             this.ruleForm = {};
@@ -79,6 +79,6 @@ var vm = new Vue({
         }
     },
     created(){
-        this.getList(1,this.page.pageSize);
+        this.getList(this.param.curPage, this.param.pageSize);
     }
 })

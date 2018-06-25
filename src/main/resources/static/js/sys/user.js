@@ -6,7 +6,7 @@ var vm = new Vue({
             title: '',
             param: {
                 curPage: 1,
-                pageSize: 2
+                pageSize: 10
             },
             total: 0,
             tableData: [],
@@ -35,7 +35,7 @@ var vm = new Vue({
         reset() {
             this.param = {
                 curPage: 1,
-                pageSize: 2
+                pageSize: 10
             }
         },
         add() {

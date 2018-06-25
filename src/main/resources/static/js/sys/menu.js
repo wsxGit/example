@@ -72,7 +72,7 @@ var vm = new Vue({
                     ajaxPost("save", this.ruleForm, function (r) {
                         that.$message({showClose: true, message: '操作成功', type: 'success'});
                         that.showList = true;
-                        that.getList(1, that.page.pageSize);
+                        that.getList(1, that.param.pageSize);
                     })
                 } else {
                     console.log('error submit!!');
@@ -92,7 +92,7 @@ var vm = new Vue({
                 let that = this;
                 ajaxGet('delete?id=' + data.menuId, data, function (r) {
                     that.$message({type: 'success', message: '删除成功!'})
-                    that.getList(that.page.curPage, that.page.pageSize);
+                    that.getList(that.param.curPage, that.param.pageSize);
                 })
             });
         }

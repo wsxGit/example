@@ -2,7 +2,7 @@ var vm = new Vue({
     el: '#app',
     data() {
         return {
-            showList:true,
+            showList: true,
             title: '',
             param: {
                 curPage: 1,

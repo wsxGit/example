@@ -78,7 +78,7 @@ public class GeneratorUtils {
                 if (template.getFileName().equals("tmp.js.tmp")){
                     StringBuilder sb = new StringBuilder();
                     for (String filedName : filedNames) {
-                        String s = filedName + ": [{ required: true, message: '请输入内容', trigger: 'blur' }],\n";
+                        String s = filedName + ": [{ required: true, message: '请输入内容'}],\n";
                         sb.append(s);
                     }
                     content = content.replaceAll("#for",sb.toString());

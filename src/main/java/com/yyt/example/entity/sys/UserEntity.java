@@ -15,8 +15,6 @@ public class UserEntity {
     private String loginName;
     private String loginPassword;
     private String userName;
-    private Integer insertUser;
-    private Integer updateUser;
     private Date createTime = new Date();
     private Date updateTime = new Date();
     private Set<RoleEntity> roles = new HashSet<>();
@@ -62,27 +60,8 @@ public class UserEntity {
         this.userName = userName;
     }
 
-    @Basic
-    @Column(name = "insert_user")
-    public Integer getInsertUser() {
-        return insertUser;
-    }
 
-    public void setInsertUser(Integer insertUser) {
-        this.insertUser = insertUser;
-    }
-
-    @Basic
-    @Column(name = "update_user")
-    public Integer getUpdateUser() {
-        return updateUser;
-    }
-
-    public void setUpdateUser(Integer updateUser) {
-        this.updateUser = updateUser;
-    }
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @Basic
     @Column(name = "create_time")
     public Date getCreateTime() {
@@ -93,7 +72,7 @@ public class UserEntity {
         this.createTime = createTime;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @Basic
     @Column(name = "update_time")
     public Date getUpdateTime() {
@@ -105,8 +84,8 @@ public class UserEntity {
     }
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinTable(name = "sys_user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-            @JoinColumn(name = "role_id") })
+    @JoinTable(name = "sys_user_role", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {
+            @JoinColumn(name = "role_id")})
     public Set<RoleEntity> getRoles() {
         return roles;
     }
@@ -124,14 +103,12 @@ public class UserEntity {
                 Objects.equals(loginName, that.loginName) &&
                 Objects.equals(loginPassword, that.loginPassword) &&
                 Objects.equals(userName, that.userName) &&
-                Objects.equals(insertUser, that.insertUser) &&
-                Objects.equals(updateUser, that.updateUser) &&
                 Objects.equals(createTime, that.createTime) &&
                 Objects.equals(updateTime, that.updateTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, loginName, loginPassword, userName, insertUser, updateUser, createTime, updateTime);
+        return Objects.hash(userId, loginName, loginPassword, userName, createTime, updateTime);
     }
 }
